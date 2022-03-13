@@ -46,8 +46,8 @@ pub mod interpreting {
         print!("{}", cell_value as char);
     }
 
-    pub fn open_loop(code: &String, index: usize, cell_value: u8) -> usize{
-        match find_matching_closing_bracket(&code, index) {
+    pub fn open_loop(code: &str, index: usize, cell_value: u8) -> usize{
+        match find_matching_closing_bracket(code, index) {
             Some(i) => if cell_value == 0 {
                 i
             } else {
@@ -58,14 +58,14 @@ pub mod interpreting {
         }
     }
 
-    pub fn close_loop(code: &String, index: usize) -> usize{
-        match find_matching_opening_bracket(&code, index) {
+    pub fn close_loop(code: &str, index: usize) -> usize{
+        match find_matching_opening_bracket(code, index) {
             Some(i) => i,
             None => panic!("Loop incomplete: Missing opening bracket (closing bracket at {})", index)
         }
     }
 
-    fn find_matching_closing_bracket(where_to_search: &String, bracket_index: usize) -> Option<usize> {
+    fn find_matching_closing_bracket(where_to_search: &str, bracket_index: usize) -> Option<usize> {
         let mut opening_brackets = 0;
         let mut closing_brackets = 0;
 
@@ -83,7 +83,7 @@ pub mod interpreting {
             None
     }
 
-    fn find_matching_opening_bracket(where_to_search: &String, bracket_index: usize) -> Option<usize> {
+    fn find_matching_opening_bracket(where_to_search: &str, bracket_index: usize) -> Option<usize> {
         let mut opening_brackets = 0;
         let mut closing_brackets = 0;
 
